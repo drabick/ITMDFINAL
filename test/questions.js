@@ -1,5 +1,5 @@
 let mongoose = require("mongoose");
-let Book = require('../models/book');
+let Question = require('../models/question');
 let chai = require('chai');
 let chaiHttp = require('chai-http');
 let app = require('../app');
@@ -10,7 +10,7 @@ let should = chai.should();
 
 chai.use(chaiHttp);
 
-describe('Books', () => {
+describe('Questions', () => {
   before(done => {
     // Start the server
     server.listen(0);
@@ -19,7 +19,7 @@ describe('Books', () => {
 
   beforeEach(done => { 
     // Before each test we empty the database
-    Book.remove({}, (err) => { 
+    Question.remove({}, (err) => { 
       done();         
     });     
   });
@@ -31,18 +31,19 @@ describe('Books', () => {
   done();
   });
 
-  describe('GET /api/books', () => {
-    it('it should GET all the books', (done) => {
-    	let expectedBook = new Book({
-    		title: "Star Wars",
-    		author: "Me",
-    		numPages: 350
+  describe('GET /api/questions', () => {
+    it('it should GET all the questions', (done) => {
+    	let expectedQuestion = new Question({
+    		user: "user",
+    		subject: "test",
+        question: "Test question",
+        comments: "Test comment"
     	})
 
-    	expectedBook.save(function (err, book) {
+    	expectedQuestion.save(function (err, question) {
   	      if (err) return console.error(err);
           chai.request(server)
-              .get('/api/books')
+              .get('/api/questions')
               .end((err, res) => {
                   res.should.have.status(200);
                   res.body.should.be.a('array');
@@ -53,82 +54,89 @@ describe('Books', () => {
     });
   });
 
-  describe('POST /api/books', () => {
-    it('it should add a new books', (done) => {
-    	let expectedBook = new Book({
-    		title: "Star Wars",
-    		author: "Me",
-    		numPages: 350
+  describe('POST /api/questions', () => {
+    it('it should add a new question', (done) => {
+    	let expectedQuestion = new Question({
+    		user: "user",
+    		subject: "test",
+        question: "Test question",
+        comments: "Test comment"
     	});
 
       chai.request(server)
-          .post('/api/books')
-          .send(expectedBook)
+          .post('/api/questions')
+          .send(expectedQuestion)
           .end((err, res) => {
             res.should.have.status(200);
             res.body.should.be.a('object');
             res.body.should.have.property("id");
-            res.body.should.have.property("title").eql(expectedBook.title);
-            res.body.should.have.property("author").eql(expectedBook.author);
-            res.body.should.have.property("numPages").eql(expectedBook.numPages);
+            res.body.should.have.property("user").eql(expectedQuestion.user);
+            res.body.should.have.property("subject").eql(expectedQuestion.subject);
+            res.body.should.have.property("question").eql(expectedQuestion.question);
+            res.body.should.have.property("comments").eql(expectedQuestion.comments);            
             done();
           });
     });
   }); 
 
 
-  describe('GET /api/books/:id', () => {
-    it('it should get an existing book', (done) => {
-      let existingBook = new Book({
-    		title: "Star Wars",
-    		author: "Me",
-    		numPages: 350
+  describe('GET /api/questions/:id', () => {
+    it('it should get an existing question', (done) => {
+      let existingQuestion = new Question({
+    		user: "user",
+    		subject: "test",
+        question: "Test question",
+        comments: "Test comment"
       });
 
-      existingBook.save(function (err, book) {
+      existingQuestion.save(function (err, question) {
         if (err) return console.error(err);
         chai.request(server)
-          .get('/api/books/' + book.id)
+          .get('/api/questions/' + question.id)
           .end((err, res) => {
             res.should.have.status(200);
             res.body.should.be.a('object');
             res.body.should.have.property("id");
-            res.body.should.have.property("author").eql(existingBook.author);
-            res.body.should.have.property("title").eql(existingBook.title);
-            res.body.should.have.property("numPages").eql(existingBook.numPages);
+            res.body.should.have.property("user").eql(existingBook.user);
+            res.body.should.have.property("subject").eql(existingBook.subject);
+            res.body.should.have.property("question").eql(existingBook.question);
+            res.body.should.have.property("comments").eql(existingBook.comments);            
             done();
           });
       });
     });
   });
 
-  describe('PUT /api/books/:id', () => {
-    it('it should update an existing book', (done) => {
-      let existingBook = new Book({
-    		title: "Star Wars",
-    		author: "Me",
-    		numPages: 350
+  describe('PUT /api/questions/:id', () => {
+    it('it should update an existing question', (done) => {
+      let existingQuestion = new Question({
+    		user: "user",
+    		subject: "test",
+        question: "Test question",
+        comments: "Test comment"
       });
-      let expectedBook = new Book({
-        author: existingBook.author,
-        title: existingBook.title,
-        numPages: existingBook.numPages
+      let expectedQuestion = new Question({
+        user: existingQuestion.user,
+        subject: existingQuestion.subject,
+        question: existingQuestion.question,
+        comments: existingQuestion.comments        
       });
 
-      existingBook.save(function (err, book) {
+      existingQuestion.save(function (err, question) {
         if (err) return console.error(err);
         chai.request(server)
-          .put('/api/books/' + book.id)
-          .send(expectedBook)
+          .put('/api/questions/' + question.id)
+          .send(expectedQuestion)
           .end((err, res) => {
             res.should.have.status(204);
             res.body.should.be.empty;
 
-            Book.findOne({_id: existingBook.id}, function(err, foundBook) {
+            Question.findOne({_id: existingQuestion.id}, function(err, foundQuestion) {
               if (err) return console.error(err);
-              foundBook.should.have.property("author").eql(expectedBook.author);
-              foundBook.should.have.property("title").eql(expectedBook.title);
-              foundBook.should.have.property("numPages").eql(expectedBook.numPages);
+              foundQuestion.should.have.property("user").eql(expectedQuestion.user);
+              foundQuestion.should.have.property("subject").eql(expectedQuestion.subject);
+              foundQuestion.should.have.property("question").eql(expectedQuestion.question);
+              foundQuestion.should.have.property("comments").eql(expectedQuestion.comments);              
               done();
             })
           });
@@ -136,25 +144,26 @@ describe('Books', () => {
     });
   });
 
-  describe('DELETE /api/books/:id', () => {
-    it('it should delete an existing book', (done) => {
-      let existingBook = new Book({
-    		title: "Star Wars",
-    		author: "Me",
-    		numPages: 350
+  describe('DELETE /api/questions/:id', () => {
+    it('it should delete an existing question', (done) => {
+      let existingQuestion = new Question({
+    		user: "user",
+    		subject: "test",
+        question: "Test question",
+        comments: "Test comment"
       });
 
-      existingBook.save(function (err, book) {
+      existingQuestion.save(function (err, question) {
         if (err) return console.error(err);
         chai.request(server)
-          .delete('/api/books/' + book.id)
+          .delete('/api/questions/' + question.id)
           .end((err, res) => {
             res.should.have.status(204);
             res.body.should.be.empty;
 
-            Book.findOne({_id: existingBook.id}, function(err, book) {
+            Question.findOne({_id: existingQuestion.id}, function(err, question) {
               if (err) return console.error(err);
-              should.not.exist(book);
+              should.not.exist(question);
               done();
             })
           });
