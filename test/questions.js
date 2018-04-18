@@ -97,10 +97,10 @@ describe('Questions', () => {
             res.should.have.status(200);
             res.body.should.be.a('object');
             res.body.should.have.property("id");
-            res.body.should.have.property("user").eql(existingBook.user);
-            res.body.should.have.property("subject").eql(existingBook.subject);
-            res.body.should.have.property("question").eql(existingBook.question);
-            res.body.should.have.property("comments").eql(existingBook.comments);            
+            res.body.should.have.property("user").eql(existingQuestion.user);
+            res.body.should.have.property("subject").eql(existingQuestion.subject);
+            res.body.should.have.property("question").eql(existingQuestion.question);
+            res.body.should.have.property("comments").eql(existingQuestion.comments);            
             done();
           });
       });
