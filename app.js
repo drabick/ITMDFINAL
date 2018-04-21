@@ -38,6 +38,11 @@ app.get('/clientside', function (req, res) {
 app.get('/serverside', function (req, res) {
     res.render('ServerSide', {});
   });
+
+  app.get('/resume', function (req, res) {
+    res.render('resume', {});
+  });  
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
