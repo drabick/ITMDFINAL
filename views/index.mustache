@@ -22,7 +22,7 @@
   </head>
 
   <body>
-
+<center>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
       <a class="navbar-brand" href="#">WebApp</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -64,33 +64,34 @@
         <div class="container">
           <h1 class="display-3">Web Application Development</h1>
           <p>Web Application Development Knowledge Base</p>
-          <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
-        </div>
+         </div>
       </div>
 
       <div class="container">
         <!-- Example row of columns -->
+        
         <div class="row">
+        
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <div class="col-md-4">
             <h2>Client Side</h2>
             <p>Everything you need to get started with client side development. </p>
             <p><a class="btn btn-secondary" href="./clientside" role="button">View details &raquo;</a></p>
           </div>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <div class="col-md-4">
             <h2>Server Side</h2>
             <p>Everything you need to get started with sever side development. </p>
             <p><a class="btn btn-secondary" href="./serverside" role="button">View details &raquo;</a></p>
           </div>
-          <div class="col-md-4">
-            <h2>Resume Review</h2>
-            <p>What you need to know for yur resume.</p>
-            <p><a class="btn btn-secondary" href="./Resume" role="button">View details &raquo;</a></p>
-          </div>
         </div>
         <hr>
-      </div> <!-- /container -->
+       <a class="btn btn-primary btn-lg " href = "./ask"> Ask a question </a> <center><br>
+      <!-- /container -->
       <div>
-        <table class="table table-striped">
+        <table class="table">
           <thead>
             <tr>
               <th scope="col">User</th>
@@ -106,6 +107,8 @@
               <td>{{subject}}</td>
               <td>{{question}}</td>
               <td>{{comments}}</td>
+              <td><a class="btn btn-primary" href = "./answer/{{id}}">Answer</a></td>
+              <td><a class="btn btn-primary" href = "./delete/{{id}}">Delete</a></td>
             </tr>
            {{/questions}} 
           </tbody>
