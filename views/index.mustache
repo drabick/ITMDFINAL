@@ -64,7 +64,6 @@
         <div class="container">
           <h1 class="display-3">Web Application Development</h1>
           <p>Web Application Development Knowledge Base</p>
-          <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
         </div>
       </div>
 
@@ -88,6 +87,7 @@
           </div>
         </div>
         <hr>
+        <center><a class="btn btn-primary btn-lg " href = "./ask"> Ask a question </a> </center><br>
       </div> <!-- /container -->
       <div>
         <table class="table table-striped">
@@ -106,6 +106,8 @@
               <td>{{subject}}</td>
               <td>{{question}}</td>
               <td>{{comments}}</td>
+              <td><a class="btn btn-primary" href = "./answer/{{id}}">Answer</a></td>
+              <td><a class="btn btn-primary" href = "./delete/{{id}}">Delete</a></td>
             </tr>
            {{/questions}} 
           </tbody>
