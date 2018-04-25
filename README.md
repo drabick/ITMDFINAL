@@ -1,5 +1,5 @@
-# <center> ITMD 562 Web Site Application Development </center>
-#### <center> ITMD 862 562 FINAL PROJECT </center>
+# ITMD 562 Web Site Application Development
+#### ITMD 862 562 FINAL PROJECT
 
 ##### Team Members:
 - Darren Rabick 
