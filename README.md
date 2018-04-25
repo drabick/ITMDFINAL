@@ -31,6 +31,6 @@ The Web App will be broken out into 3 major areas : -
 </tr>
 </table>
 
-[//]: <> (The table command for some reason doesn't work and hence <table> tags are used)
+[//]: # (The table command for some reason doesn't work and hence <table> tags are used)
 
 [Check Out Our Website](https://young-stream-38423.herokuapp.com/)
