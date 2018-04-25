@@ -4,8 +4,8 @@ var bodyParser = require('body-parser');
 var mustacheExpress = require('mustache-express');
 let Question = require('./models/question');
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/test');
-//mongoose.connect('mongodb://heroku_109zmfrg:tnet46128c07k6co2snu024c87@ds247699.mlab.com:47699/heroku_109zmfrg');
+//mongoose.connect('mongodb://localhost/test');
+mongoose.connect('mongodb://heroku_109zmfrg:tnet46128c07k6co2snu024c87@ds247699.mlab.com:47699/heroku_109zmfrg');
 var questions = require('./routes/questions');
 
 
