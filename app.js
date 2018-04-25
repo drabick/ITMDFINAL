@@ -18,6 +18,7 @@ app.engine('mustache', mustacheExpress());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static('public'));
 
 app.set('view engine', 'mustache');
 app.set('views', __dirname + '/views');
@@ -32,39 +33,41 @@ app.get('/', function (req, res) {
 });
 
 app.get('/clientside', function (req, res) {
-    res.render('ClientSide', {});
-  });
-
-app.get('/serverside', function (req, res) {
-    res.render('ServerSide', {});
-  });
-
-  app.get('/resume', function (req, res) {
-    res.render('resume', {});
-  });  
-
-//Asking Questions
-app.get('/ask', function (req, res) {
-  res.render('add', {});
+  res.render('ClientSide', {});
 });
 
-//Asked Questions
-app.post('/asked', function (req, res) {
-  let askedQuestion = new Question(req.body);
-  askedQuestion.save(function(err, product){
+app.get('/serverside', function (req, res) {
+  res.render('ServerSide', {});
+});
+
+app.get('/resume', function (req, res) {
+  res.render('resume', {});
+});
+
+app.get('/delete/:id', function (req, res) {
+  Question.deleteOne({_id: req.params["id"] }, function (err, question) {
+    if (err) return next(err);
     res.redirect('/');
   });
 });
 
+app.post('/answered/:id', function (req, res) {
+  Question.findOneAndUpdate({_id: req.params["id"]}, req.body, function(err, book) {
+    if (err) return next(err);
+    res.redirect('/');
+  });
+});
+
+
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
