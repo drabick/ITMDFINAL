@@ -14,12 +14,23 @@ Look to leverage all the current knowledge gained during the course and apply it
 A Web Application Development Knowledge Base. Centralize and well organized distributive area centered around web application development encompassing various tools, framework, extension and examples for the development of web applications along with database driven FAQ section.  
 
 The Web App will be broken out into 3 major areas : -
-| Area | Content |
-| ------ | ------ |
-| Client Side | HTML, CSS, Javascript |
-| Server Side | MondoDb, NodeJs, ExpressJS
-| FAQ Database | Links to websites,	Q&A Section | 
-||  Allow users to share best practices and ask questions
+<table>
+<th>Area</th> 
+<th>Content</th>
+<tr>
+<td align="center">Client Side</td>
+<td align="center">HTML, CSS, Javascript</td>
+</tr>
+<tr>
+<td align="center">Server Side</td>
+<td align="center">MondoDb, NodeJs, ExpressJS</td>
+</tr>
+<tr>
+<td align="center">FAQ Database</td>
+<td align="center">Links to websites, Q&A Section, Allow users to share best practices and ask questions</td>
+</tr>
+</table>
 
+[//]: <> (The table command for some reason doesn't work and hence <table> tags are used)
 
 [Check Out Our Website](https://young-stream-38423.herokuapp.com/)
