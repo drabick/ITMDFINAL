@@ -52,7 +52,7 @@ app.get('/delete/:id', function (req, res) {
 });
 
 app.post('/answered/:id', function (req, res) {
-  Question.findOneAndUpdate({_id: req.params["id"]}, req.body, function(err, book) {
+  Question.findOneAndUpdate({_id: req.params["id"]}, req.body, function(err, question) {
     if (err) return next(err);
     res.redirect('/');
   });
